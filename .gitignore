@@ -6,8 +6,7 @@ __pycache__/
 # C extensions
 *.so
 /UploadedFiles/*
-/QrCodes/*
-/SecureRepo/*
+
 
 # Distribution / packaging
 .Python
