@@ -29,4 +29,11 @@ class SecureRepoFileSerializer(serializers.Serializer):
             settings.SECURE_REP0_MEDIA_ROOT, 
             validated_data['file']
         )           
-    
+
+class AnnouncementFileSerializer(serializers.Serializer):
+    file = serializers.FileField()
+    def create(self, validated_data): 
+        return read_file(
+            settings.ANNOUNCEMENT_MEDIA_ROOT, 
+            validated_data['file']
+        ) 
