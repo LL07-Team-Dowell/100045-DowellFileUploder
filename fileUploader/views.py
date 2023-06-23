@@ -43,7 +43,27 @@ class AnnouncementFileUploadView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-        
+@method_decorator(csrf_exempt, name='dispatch')
+class VideoFileUploadView(APIView):
+    def post(self, request, format=None):
+        serializer = CamVideosFileSerializer(data=request.data)
+        if serializer.is_valid():
+            file_path = serializer.save()
+            file_url = request.build_absolute_uri(settings.MEDIA_URL + file_path)
+            return Response({'file_url': file_url}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@method_decorator(csrf_exempt, name='dispatch')
+class ImageFileUploadView(APIView):
+    def post(self, request, format=None):
+        serializer = CamImagesFileSerializer(data=request.data)
+        if serializer.is_valid():
+            file_path = serializer.save()
+            file_url = request.build_absolute_uri(settings.MEDIA_URL + file_path)
+            return Response({'file_url': file_url}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+              
 class QrCodeFileDownloadView(APIView):
     def get(self, request, file_name):
         file_path = os.path.join(settings.QRCODE_MEDIA_ROOT, file_name)
