@@ -11,7 +11,7 @@ urlpatterns = [
 ] 
 
 urlpatterns += [
-    path('media/QrCodes/<path:path>', serve, {'document_root': settings.QRCODE_MEDIA_ROOT}),
+    path('media/qrCodes/<path:path>', serve, {'document_root': settings.QRCODE_MEDIA_ROOT}),
     path('media/SecureRepo/<path:path>', serve, {'document_root': settings.SECURE_REP0_MEDIA_ROOT}),
     path('media/Announcement/<path:path>', serve, {'document_root': settings.ANNOUNCEMENT_MEDIA_ROOT}),
 ]

@@ -23,7 +23,10 @@ class QrCodeFileSerializer(serializers.Serializer):
         return read_file(
             settings.QRCODE_MEDIA_ROOT, 
             validated_data['file']
-        )        
+        )       
+class QrCodeUpdateFileSerializer(serializers.Serializer):
+    file = serializers.FileField()
+
 class SecureRepoFileSerializer(serializers.Serializer):
     
     file = serializers.FileField()
