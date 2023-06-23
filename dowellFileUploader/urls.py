@@ -14,4 +14,7 @@ urlpatterns += [
     path('media/qrCodes/<path:path>', serve, {'document_root': settings.QRCODE_MEDIA_ROOT}),
     path('media/SecureRepo/<path:path>', serve, {'document_root': settings.SECURE_REP0_MEDIA_ROOT}),
     path('media/Announcement/<path:path>', serve, {'document_root': settings.ANNOUNCEMENT_MEDIA_ROOT}),
+    path('media/Image/<path:path>', serve, {'document_root': settings.CAM_COMPONENT_IMAGES_MEDIA_ROOT}),
+    path('media/Video/<path:path>', serve, {'document_root': settings.CAM_COMPONENT_VIDEOS_MEDIA_ROOT}),
+
 ]

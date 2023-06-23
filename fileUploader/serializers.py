@@ -2,9 +2,11 @@ from rest_framework import serializers
 from .models import *
 import os
 from django.conf import settings
+import base64
+from io import BytesIO
 #New libraries to install
-from moviepy.editor import VideoFileClip
 from PIL import Image
+
 
 
 def read_file(folder, data):
@@ -14,6 +16,21 @@ def read_file(folder, data):
     file_path = os.path.join(folder, zip_file.name)
     with open(file_path, 'wb') as f:
         f.write(zip_file.read())
+    return os.path.relpath(file_path, settings.MEDIA_ROOT)
+def read_file_image_video(folder, data, is_base64=False, name=""):
+    # logger.debug("Harmless debug Message 88")
+    zip_file = data
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    
+    if is_base64:
+        file_path = os.path.join(folder, name)
+        with open(file_path, 'wb') as f:
+            f.write(zip_file)
+    else:
+        file_path = os.path.join(folder, zip_file.name)
+        with open(file_path, 'wb') as f:
+            f.write(zip_file.read())
     return os.path.relpath(file_path, settings.MEDIA_ROOT)
 
 class QrCodeFileSerializer(serializers.Serializer):
@@ -45,25 +62,34 @@ class AnnouncementFileSerializer(serializers.Serializer):
         ) 
     
 class CamVideosFileSerializer(serializers.Serializer):
-    file = serializers.FileField()
+    video_data = serializers.CharField()
+    name = serializers.CharField()
 
-    def validate_video(self, value):
-        video = value.file.name
-        clip = VideoFileClip(video)
-        duration = clip.duration
-        clip.close()
-        if duration > 60:  # Duration is in seconds
-            raise serializers.ValidationError("Video duration should not exceed 1 minute.")
-        return value
+    def validate(self, attrs):
+        # Decode the Base64-encoded video data
+        video_data = attrs.get('video_data')
+        if video_data:
+            # Decode the Base64-encoded video data
+            try:
+                decoded_data = base64.b64decode(video_data)
+            except base64.binascii.Error:
+                raise serializers.ValidationError("Invalid Base64 data.")
 
-    
+        # Create a BytesIO object from the decoded data
+        video_file = BytesIO(decoded_data)
+        return attrs
+
     def create(self, validated_data):    
-        return read_file(
-            settings.CAM_COMPONENT_VIDEOS_MEDIA_ROOT, 
-            # validated_data['file']
-            validated_data.pop('video')
-
-        )   
+        decoded_data = base64.b64decode(validated_data.pop('video_data'))
+        name = validated_data.pop('name')
+        return read_file_image_video(
+                settings.CAM_COMPONENT_VIDEOS_MEDIA_ROOT, 
+                # validated_data['file']
+                decoded_data,
+                True,
+                name
+            ) 
+  
 class CamImagesFileSerializer(serializers.Serializer):
     # file = serializers.FileField()
     image = serializers.ImageField()
@@ -83,7 +109,7 @@ class CamImagesFileSerializer(serializers.Serializer):
         return value
     
     def create(self, validated_data):    
-        return read_file(
+        return read_file_image_video(
             settings.CAM_COMPONENT_IMAGES_MEDIA_ROOT, 
             # validated_data['file']
             validated_data.pop('image')
