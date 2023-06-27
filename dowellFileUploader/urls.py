@@ -8,7 +8,8 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('uploadfiles/', include('fileUploader.urls')),
-] 
+    path('api/v2/', include('app.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
     path('media/qrCodes/<path:path>', serve, {'document_root': settings.QRCODE_MEDIA_ROOT}),
