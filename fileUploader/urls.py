@@ -9,5 +9,7 @@ urlpatterns = [
     path('qrcode-download/<str:file_name>/', QrCodeFileDownloadView.as_view(),     name='qrcode-download'),
     path('secure-repo-download-file/<str:file_name>/', SecureRepoFileDownloadView.as_view(), name='secure-repo-download'),
     path('announcement-download-file/<str:file_name>/', AnnouncementFileDownloadView.as_view(), name='announcement-download'),
+    path('upload-public-secure-repo-to-drive/', PublicSecureRepoFileUploadView.as_view(), name='secure_repo_upload'),
+    path('secure-public-repo-download-file/<str:file_name>/', PublicSecureRepoFileDownloadView.as_view(), name='secure-repo-download'),
 
 ]

@@ -74,3 +74,11 @@ class CamImagesFileSerializer(serializers.Serializer):
             settings.CAM_COMPONENT_IMAGES_MEDIA_ROOT, 
             validated_data.pop('image')
         )   
+    
+class PublicSecureRepoFileSerializer(serializers.Serializer):
+    file = serializers.FileField()
+    def create(self, validated_data): 
+        return read_file(
+            settings.PUBLIC_SECURE_REP0_MEDIA_ROOT, 
+            validated_data['file']
+        )  
