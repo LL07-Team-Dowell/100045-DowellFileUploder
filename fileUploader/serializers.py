@@ -59,7 +59,8 @@ class CamVideosFileSerializer(serializers.Serializer):
     
     def create(self, validated_data):  
         if not self.is_video(validated_data['video'].name):
-            raise serializers.ValidationError('The uploaded file is not a video.')
+            raise serializers.ValidationError({"error": 'The uploaded file is not a video. Please upload a video file.'})
+
         
         return read_file(
                 settings.CAM_COMPONENT_VIDEOS_MEDIA_ROOT, 
