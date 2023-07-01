@@ -8,7 +8,6 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('uploadfiles/', include('fileUploader.urls')),
-    path('api/v2/', include('app.urls')),
 ]
 
 urlpatterns += [

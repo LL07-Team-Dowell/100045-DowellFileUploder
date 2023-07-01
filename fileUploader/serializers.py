@@ -52,7 +52,6 @@ class AnnouncementFileSerializer(serializers.Serializer):
     
 class CamVideosFileSerializer(serializers.Serializer):
     video = serializers.FileField()
-    name = serializers.CharField()
 
     def is_video(self, filename):
         mime_type, _ = mimetypes.guess_type(filename)
@@ -65,7 +64,6 @@ class CamVideosFileSerializer(serializers.Serializer):
         return read_file(
                 settings.CAM_COMPONENT_VIDEOS_MEDIA_ROOT, 
                 validated_data['video'],
-                validated_data['name']
             ) 
 
 class CamImagesFileSerializer(serializers.Serializer):
