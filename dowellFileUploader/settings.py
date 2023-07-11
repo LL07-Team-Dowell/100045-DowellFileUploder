@@ -134,6 +134,7 @@ ANNOUNCEMENT_MEDIA_ROOT = os.path.join(BASE_DIR, 'announcements')
 CAM_COMPONENT_IMAGES_MEDIA_ROOT = os.path.join(BASE_DIR, 'camera_component_images')
 CAM_COMPONENT_VIDEOS_MEDIA_ROOT = os.path.join(BASE_DIR, 'camera_component_videos')
 PUBLIC_SECURE_REP0_MEDIA_ROOT = os.path.join(BASE_DIR, 'publicSecureRepo')
+HR_MEDIA_ROOT = os.path.join(BASE_DIR, 'hr')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

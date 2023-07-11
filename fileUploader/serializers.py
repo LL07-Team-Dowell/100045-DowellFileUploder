@@ -83,3 +83,13 @@ class PublicSecureRepoFileSerializer(serializers.Serializer):
             settings.PUBLIC_SECURE_REP0_MEDIA_ROOT, 
             validated_data['file']
         )  
+    
+
+class HrImagesFileSerializer(serializers.Serializer):
+    image = serializers.ImageField()
+    
+    def create(self, validated_data):    
+        return read_file(
+            settings.HR_MEDIA_ROOT, 
+            validated_data.pop('image')
+        ) 
