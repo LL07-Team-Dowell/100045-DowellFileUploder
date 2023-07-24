@@ -49,6 +49,14 @@ class AnnouncementFileSerializer(serializers.Serializer):
             settings.ANNOUNCEMENT_MEDIA_ROOT, 
             validated_data['file']
         ) 
+
+class DigitalQFileSerializer(serializers.Serializer):
+    file = serializers.FileField()
+    def create(self, validated_data): 
+        return read_file(
+            settings.DIGITAL_QUEUE_MEDIA_ROOT, 
+            validated_data['file']
+        ) 
     
 class CamVideosFileSerializer(serializers.Serializer):
     video = serializers.FileField()
