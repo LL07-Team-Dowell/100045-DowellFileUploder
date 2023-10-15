@@ -20,6 +20,7 @@ urlpatterns += [
     path('digitalQueue/<path:path>',            serve, {'document_root': settings.DIGITAL_QUEUE_MEDIA_ROOT}),
     path('publicSecureRepo/<path:path>', serve, {'document_root': settings.PUBLIC_SECURE_REP0_MEDIA_ROOT}),
 
-    path('viewFile/<path:path>', serve, {'document_root': settings.SAVE_PDF}),
-    path('hr/<path:path>', serve, {'document_root': settings.HR_MEDIA_ROOT})
+    path('view-pdf/<path:path>', serve, {'document_root': settings.SAVE_PDF}),
+    path('hr/<path:path>', serve, {'document_root': settings.HR_MEDIA_ROOT}),
+    path('voice-recording/<path:path>', serve, {'document_root': settings.VOICE_RECORDING})
 ]

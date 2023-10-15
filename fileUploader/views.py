@@ -191,3 +191,15 @@ class PDFFileUploadView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+
+# Audio 
+@method_decorator(csrf_exempt, name='dispatch')
+class VoiceRecordingFileUploadView(APIView):
+    def post(self, request, format=None):
+        serializer = VoiceRecordingFileSerializer(data=request.data)
+        if serializer.is_valid():
+            file_path = serializer.save()
+            file_url = request.build_absolute_uri(settings.MEDIA_URL + file_path)
+            return Response({'audio_url': file_url}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

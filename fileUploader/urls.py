@@ -8,7 +8,7 @@ urlpatterns = [
     path('upload-announcement-to-drive/', AnnouncementFileUploadView.as_view(), name='announcement_upload'),
     path('upload-digtalq-to-drive/', DigitalQFileUploadView.as_view(), name='digitalq_upload'),
     
-    path('upload-file/', PDFFileUploadView.as_view(), name='upload_pdf'),
+    path('upload-pdf-file/', PDFFileUploadView.as_view(), name='upload_pdf'),
 
     path('upload-video-to-drive/', VideoFileUploadView.as_view(), name='video-file-upload'),
     path('upload-image-to-drive/', ImageFileUploadView.as_view(), name='image-file-upload'),
@@ -25,5 +25,7 @@ urlpatterns = [
     path('secure-public-repo-download-file/<str:file_name>/', PublicSecureRepoFileDownloadView.as_view(), name='secure-repo-download'),
     path('digitalq-download-file/<str:file_name>/', DigitalQFileDownloadView.as_view(), name='digitalq-download'),
     path('hr-image-download/<str:file_name>/', HrImageDownloadView.as_view(),     name='hr-download'),
+
+    path('upload-audio-to-drive/', VoiceRecordingFileUploadView.as_view(), name='audio-file-upload'),
 
 ]

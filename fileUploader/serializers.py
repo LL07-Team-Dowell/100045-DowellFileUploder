@@ -104,9 +104,37 @@ class HrImagesFileSerializer(serializers.Serializer):
     
 
 class SavePdfFileSerializer(serializers.Serializer):
-    file = serializers.FileField()
+    pdf = serializers.FileField()
+
+    def is_pdf(self, filename):
+        mime_type, _ = mimetypes.guess_type(filename)
+        if mime_type == 'application/pdf':
+            return True
+        else:
+            return False
+
     def create(self, validated_data): 
+        if not self.is_pdf(validated_data['pdf'].name):
+            raise serializers.ValidationError({"error": 'The uploaded file is not an pdf. Please upload an pdf file.'})
         return read_file(
             settings.SAVE_PDF, 
-            validated_data['file']
+            validated_data['pdf']
         )   
+    
+
+class VoiceRecordingFileSerializer(serializers.Serializer):
+    audio = serializers.FileField()
+
+    def is_audio(self, filename):
+        mime_type, _ = mimetypes.guess_type(filename)
+        return mime_type is not None and mime_type.startswith('audio/')
+    
+    def create(self, validated_data):  
+        if not self.is_audio(validated_data['audio'].name):
+            raise serializers.ValidationError({"error": 'The uploaded file is not an audio. Please upload an audio file.'})
+
+        
+        return read_file(
+            settings.VOICE_RECORDING, 
+            validated_data['audio'],
+        ) 
