@@ -101,3 +101,12 @@ class HrImagesFileSerializer(serializers.Serializer):
             settings.HR_MEDIA_ROOT, 
             validated_data.pop('image')
         ) 
+    
+
+class SavePdfFileSerializer(serializers.Serializer):
+    file = serializers.FileField()
+    def create(self, validated_data): 
+        return read_file(
+            settings.SAVE_PDF, 
+            validated_data['file']
+        )   

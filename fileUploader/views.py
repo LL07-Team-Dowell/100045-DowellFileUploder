@@ -2,7 +2,7 @@ from django.conf import settings
 from .serializers import *
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponse
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -175,3 +175,19 @@ class HrImageDownloadView(APIView):
             return response
         else:
             return Response({'error': 'File not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+
+
+# PDF VIEW
+
+@method_decorator(csrf_exempt, name='dispatch')
+class PDFFileUploadView(APIView):
+    def post(self, request, format=None):
+        serializer = SavePdfFileSerializer(data=request.data)
+        if serializer.is_valid():
+            file_path = serializer.save()
+            file_url = request.build_absolute_uri(settings.MEDIA_URL + file_path)
+            return Response({'file_url': file_url}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        

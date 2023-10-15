@@ -137,6 +137,7 @@ PUBLIC_SECURE_REP0_MEDIA_ROOT = os.path.join(BASE_DIR, 'publicSecureRepo')
 HR_MEDIA_ROOT = os.path.join(BASE_DIR, 'hr')
 
 DIGITAL_QUEUE_MEDIA_ROOT = os.path.join(BASE_DIR, 'digitalQueue')
+SAVE_PDF = os.path.join(BASE_DIR, 'viewFile')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
