@@ -102,6 +102,15 @@ class HrImagesFileSerializer(serializers.Serializer):
             validated_data.pop('image')
         ) 
     
+class SamantaCampaignFileSerializer(serializers.Serializer):
+    image = serializers.FileField()
+    
+    def create(self, validated_data):    
+        return read_file(
+            settings.SAMANTA_MEDIA_ROOT, 
+            validated_data.pop('image')
+        ) 
+    
 
 class SavePdfFileSerializer(serializers.Serializer):
     pdf = serializers.FileField()

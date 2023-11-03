@@ -16,6 +16,7 @@ urlpatterns = [
     path('upload-video-to-drive/', VideoFileUploadView.as_view(), name='video_file_upload'),
     path('upload-image-to-drive/', ImageFileUploadView.as_view(), name='image_file_upload'),
     path('upload-hr-image/', HrImageUploadView.as_view(), name='hr_image_upload'),
+    path('samanta-campaign/', SamantaImageUploadView.as_view(), name='samanta_image_upload'),
 
     
     path('qrcode-download/<str:file_name>/', QrCodeFileDownloadView.as_view(),     name='qrcode-download'),

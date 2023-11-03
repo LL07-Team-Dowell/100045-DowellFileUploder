@@ -18,9 +18,10 @@ urlpatterns += [
     path('camera_component_videos/<path:path>', serve, {'document_root': settings.CAM_COMPONENT_VIDEOS_MEDIA_ROOT}),
     path('publicSecureRepo/<path:path>',        serve, {'document_root': settings.PUBLIC_SECURE_REP0_MEDIA_ROOT}),
     path('digitalQueue/<path:path>',            serve, {'document_root': settings.DIGITAL_QUEUE_MEDIA_ROOT}),
-    path('publicSecureRepo/<path:path>', serve, {'document_root': settings.PUBLIC_SECURE_REP0_MEDIA_ROOT}),
+    path('publicSecureRepo/<path:path>',        serve, {'document_root': settings.PUBLIC_SECURE_REP0_MEDIA_ROOT}),
 
-    path('view-pdf/<path:path>', serve, {'document_root': settings.SAVE_PDF}),
-    path('hr/<path:path>', serve, {'document_root': settings.HR_MEDIA_ROOT}),
-    path('voice-recording/<path:path>', serve, {'document_root': settings.VOICE_RECORDING})
+    path('view-pdf/<path:path>',                serve, {'document_root': settings.SAVE_PDF}),
+    path('hr/<path:path>',                      serve, {'document_root': settings.HR_MEDIA_ROOT}),
+    path('voice-recording/<path:path>',         serve, {'document_root': settings.VOICE_RECORDING}),
+    path('samanta-campaign/<path:path>',        serve, {'document_root': settings.SAMANTA_MEDIA_ROOT})
 ]
