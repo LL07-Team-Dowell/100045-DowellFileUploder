@@ -190,7 +190,6 @@ class HrImageDownloadView(APIView):
 
 
 # PDF VIEW
-
 @method_decorator(csrf_exempt, name='dispatch')
 class PDFFileUploadView(APIView):
     def post(self, request, format=None):
