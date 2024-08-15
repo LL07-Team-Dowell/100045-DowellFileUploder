@@ -110,6 +110,14 @@ class SamantaCampaignFileSerializer(serializers.Serializer):
             settings.SAMANTA_MEDIA_ROOT, 
             validated_data.pop('image')
         ) 
+class MyFridgeFileSerializer(serializers.Serializer):
+    image = serializers.FileField()
+    
+    def create(self, validated_data):    
+        return read_file(
+            settings.MYFRIDGE_MEDIA_ROOT,  
+            validated_data.pop('image')
+        ) 
     
 
 class SavePdfFileSerializer(serializers.Serializer):
