@@ -143,6 +143,7 @@ DIGITAL_QUEUE_MEDIA_ROOT = os.path.join(BASE_DIR, 'digitalQueue')
 SAVE_PDF = os.path.join(BASE_DIR, 'view-pdf')
 SAMANTA_MEDIA_ROOT = os.path.join(BASE_DIR, 'samanta-campaign')
 MYFRIDGE_MEDIA_ROOT = os.path.join(BASE_DIR, 'my-fridge')
+DOWELLCUBES_MEDIA_ROOT = os.path.join(BASE_DIR, 'dowellcubes')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

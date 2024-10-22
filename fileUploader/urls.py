@@ -18,6 +18,7 @@ urlpatterns = [
     path('upload-hr-image/', HrImageUploadView.as_view(), name='hr_image_upload'),
     path('samanta-campaign/', SamantaImageUploadView.as_view(), name='samanta_image_upload'),
     path('my-fridge/', MyFridgeImageUploadView.as_view(), name='myfridge_image_upload'),
+    path('dowellcubes/', DowellCubesImageUploadView.as_view(), name='dowellcubes_image_upload'),
 
     
     path('qrcode-download/<str:file_name>/', QrCodeFileDownloadView.as_view(),     name='qrcode-download'),

@@ -118,7 +118,15 @@ class MyFridgeFileSerializer(serializers.Serializer):
             settings.MYFRIDGE_MEDIA_ROOT,  
             validated_data.pop('image')
         ) 
+
+class DowellCubesFileSerializer(serializers.Serializer):
+    image = serializers.FileField()
     
+    def create(self, validated_data):    
+        return read_file(
+            settings.DOWELLCUBES_MEDIA_ROOT,  
+            validated_data.pop('image')
+        ) 
 
 class SavePdfFileSerializer(serializers.Serializer):
     pdf = serializers.FileField()

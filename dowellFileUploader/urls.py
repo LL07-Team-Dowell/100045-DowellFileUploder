@@ -25,5 +25,6 @@ urlpatterns += [
     path('hr/<path:path>',                      serve, {'document_root': settings.HR_MEDIA_ROOT}),
     path('voice-recording/<path:path>',         serve, {'document_root': settings.VOICE_RECORDING}),
     path('samanta-campaign/<path:path>',        serve, {'document_root': settings.SAMANTA_MEDIA_ROOT}),
-    path('my-fridge/<path:path>',               serve, {'document_root': settings.MYFRIDGE_MEDIA_ROOT})
+    path('my-fridge/<path:path>',               serve, {'document_root': settings.MYFRIDGE_MEDIA_ROOT}),
+    path('dowellcubes/<path:path>',               serve, {'document_root': settings.DOWELLCUBES_MEDIA_ROOT})
 ]
